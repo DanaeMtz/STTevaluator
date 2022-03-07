@@ -1,22 +1,8 @@
 import numpy as np
 
 
-def compute_levenshtein_distance(s1, s2):
-    """Compute levenshtein distance using tokens as the reference unity.
-
-    Parameters
-    ----------
-    s1 : list
-        List of tokens from the reference
-    s2 : list
-        List of tokens from the transcription
-
-    Returns
-    -------
-
-        (int) the distance between the reference and the transcription.
-
-    """
+def compute_levenshtein_distance(s1: list, s2: list) -> int:
+    """Compute levenshtein distance using tokens as the reference unity."""
     if len(s1) < len(s2):
         s1, s2 = s2, s1
 
@@ -37,20 +23,8 @@ def compute_levenshtein_distance(s1, s2):
     return previous_row[-1]
 
 
-def count_wildcards_in_reference(references):
-    """Count the number of tokens inside the square brackets [] for each transcription in the 'references' list.
-
-    Parameters
-    ----------
-    references :
-        list of tokens.
-
-    Returns
-    -------
-
-        list containing the sum of tokens inside [] for each transcription in the 'references' list.
-
-    """
+def count_wildcards_in_reference(references: list) -> int:
+    """Count the number of tokens inside the square brackets [] for each transcription in the 'references' list."""
     in_square_brackets = (
         False  # indicates whether or not a given token is inside the "[]""
     )
@@ -70,22 +44,8 @@ def count_wildcards_in_reference(references):
     return wildcard_counts
 
 
-def compute_wer(references, transcripts):
-    """Compute the WER for each transcription and compute the global wer for evaluate the whole engin
-
-    Parameters
-    ----------
-    references : list
-        List containing the tokens from the reference transcription.
-    transcripts : list
-        List containing the tokens from the transcriptions from the stt engin.
-
-    Returns
-    -------
-
-        list containing the WER for each transcription
-
-    """
+def compute_wer(references: list, transcripts: list) -> (list, float):
+    """Compute the WER for each transcription and compute the global wer for evaluate the whole engin"""
     wildcards = count_wildcards_in_reference(
         references
     )  # number of wildcards to be substracted on each transcription

@@ -97,7 +97,7 @@ def genesys_preprocessing(sentences: list) -> list:
     return reference_mod2
 
 
-def tokenize_lemmatize(sentenses):
+def tokenize_lemmatize(sentenses: list) -> list:
     """Generate lemmatized tokens using spacy"""
     nlp = spacy.load("fr_core_news_md")
     tokenizer = nlp.tokenizer
@@ -110,7 +110,7 @@ def tokenize_lemmatize(sentenses):
     return tokenized_lemmatized_sentences, lemmatized_sentences
 
 
-def tokenize(sentenses):
+def tokenize(sentenses: list) -> list:
     """Generate tokens using spacy"""
     nlp = spacy.load("fr_core_news_md")
     tokenizer = nlp.tokenizer
@@ -118,3 +118,33 @@ def tokenize(sentenses):
         [token.text for token in tokenizer(sentence)] for sentence in sentenses
     ]
     return tokenized_sentences
+
+
+def clean_genesys_tokens(tokens: list) -> list:
+    """eliminate numbers at the begining of the transcription"""
+    it_nums = []
+    for number in range(25):
+        it_nums.append(num2words.num2words(number + 1, lang="fr"))
+        it_nums = [re.sub(r"-", " ", sentence) for sentence in it_nums]
+
+    numbs_tokens = tokenize(it_nums)
+    flat_numbs = [item for sublist in numbs_tokens for item in sublist]
+    flat_numbs = list(dict.fromkeys(flat_numbs))
+    flat_numbs_ = [x for x in flat_numbs if x != "et"]
+
+    new_tokens = []
+    for trans in tokens:
+        if (
+            (trans[0] in flat_numbs)
+            and (trans[1] in flat_numbs)
+            and (trans[2] in flat_numbs_)
+        ):
+            trans = trans[3:]
+        elif (trans[0] in flat_numbs) and (trans[1] in flat_numbs):
+            trans = trans[2:]
+        elif trans[0] in flat_numbs or trans[0] == " ":
+            trans = trans[1:]
+        else:
+            trans = trans
+        new_tokens.append(new_tokens)
+    return new_tokens
