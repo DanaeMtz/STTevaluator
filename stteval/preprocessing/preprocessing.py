@@ -49,15 +49,6 @@ def verint_preprocessing(sentences: list) -> list:
     Remove the white spaces after the " ' " sign (example: j' ai);
     Remove the symbol " - " followed by a white space;
     Remove "." and ",".
-
-    Parameters
-    ----------
-    sentences :
-        a list containing the sentences from the Verint transcription
-
-    Returns
-    -------
-
     """
     verint_mod1 = [re.sub(r"' ", "'", sentence.lower()) for sentence in sentences]
     verint_mod2 = [re.sub(r"\.|,|-\s|", "", sentence) for sentence in verint_mod1]
@@ -70,15 +61,6 @@ def amazon_preprocessing(sentences: list) -> list:
     Covert word into lower case;
     Remove "." and ",";
     Remove the symbol "-" appearing in numbers.
-
-    Parameters
-    ----------
-    sentences :
-        a list containing the sentences from the Amazon transcription
-
-    Returns
-    -------
-
     """
     amazon_mod1 = [re.sub(r"\.|,", "", sentence.lower()) for sentence in sentences]
     amazon_mod2 = [re.sub(r"-", " ", sentence) for sentence in amazon_mod1]
