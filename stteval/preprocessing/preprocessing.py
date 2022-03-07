@@ -3,40 +3,47 @@ import re
 import num2words
 
 
-def reference_preprocessing(sentences):
+def reference_preprocessing(sentences: list) -> list:
     """Perform preprocessing for the particularities of reference text:
-    Covert word into lower case
-    Remove "." and ",
-    Turn the numbers into words
-
-    Parameters
-    ----------
-    sentences :
-        a list containing the reference sentences
-
-    Returns
-    -------
-
+    1. Covert all words into lower case
+    2. Remove "." and ","
+    3. Turn the numbers into words
+    4. Turn the euh into [hésitation]
+    5. Remove double spaces
     """
-    reference_mod1 = [re.sub(r"(?P<integer>\d+),(?P<decimal>\d+)", "\g<integer>.\g<decimal>", sentence) for sentence in sentences]
+    reference_mod1 = [
+        re.sub(
+            r"(?P<integer>\d+),(?P<decimal>\d+)", "\g<integer>.\g<decimal>", sentence
+        )
+        for sentence in sentences
+    ]
     reference_mod2 = [
         re.sub(
-            #r"[,]?[.]?[\d]+[.,]?[\d]?",
+            # r"[,]?[.]?[\d]+[.,]?[\d]?",
             r"\d+",
             lambda m: num2words.num2words(m.group(0), lang="fr").replace("-", " "),
             sentence,
         )
         for sentence in reference_mod1
     ]
-    reference_mod3 = [re.sub(r"(?P<last_int>\w+)\.(?P<first_dec>\w+)", "\g<last_int> et \g<first_dec>", sentence) for sentence in reference_mod2]
+    reference_mod3 = [
+        re.sub(
+            r"(?P<last_int>\w+)\.(?P<first_dec>\w+)",
+            "\g<last_int> et \g<first_dec>",
+            sentence,
+        )
+        for sentence in reference_mod2
+    ]
     reference_mod4 = [re.sub(r"\beuh\b", "[hésitation]", ref) for ref in reference_mod3]
     reference_mod5 = [re.sub(r"-", " ", sentence) for sentence in reference_mod4]
     reference_mod6 = [re.sub(r"\s+", " ", sentence) for sentence in reference_mod5]
-    reference_mod7 = [re.sub(r"[.,]", "", sentence.lower()) for sentence in reference_mod6]
+    reference_mod7 = [
+        re.sub(r"[.,]", "", sentence.lower()) for sentence in reference_mod6
+    ]
     return reference_mod7
 
 
-def verint_preprocessing(sentences):
+def verint_preprocessing(sentences: list) -> list:
     """Perform text preprocessing for the particularities of the Verint transcription :
     Covert word into lower case
     Remove the white spaces after the " ' " sign (example: j' ai);
@@ -58,7 +65,7 @@ def verint_preprocessing(sentences):
     return verint_mod3
 
 
-def amazon_preprocessing(sentences):
+def amazon_preprocessing(sentences: list) -> list:
     """Perform text preprocessing for the particularities of the Amazon Lex transcription :
     Covert word into lower case;
     Remove "." and ",";
@@ -78,20 +85,13 @@ def amazon_preprocessing(sentences):
     return amazon_mod2
 
 
-def nuance_preprocessing(sentences):
-    """Perform text preprocessing for the particularities of the Amazon Lex transcription :
-    Covert word into lower case;
-    Remove "." and ",";
-    Remove the symbol "-" appearing in numbers.
-
-    Parameters
-    ----------
-    sentences :
-        a list containing the sentences from the Amazon transcription
-
-    Returns
-    -------
-
+def nuance_preprocessing(sentences: list) -> list:
+    """Perform text preprocessing for the particularities of the Nuance Mix transcription :
+    1. Remove "." and ",".
+    2. Covert words into lower case.
+    3. Turn numbers to words (and the $ sign to the word dollars).
+    4. Eliminate double spaces.
+    4. Remove the symbol "-" appearing in numbers.
     """
     nuance_mod1 = [re.sub(r"\.|,", "", str(sentence.lower())) for sentence in sentences]
     nuance_mod2 = [
@@ -108,18 +108,15 @@ def nuance_preprocessing(sentences):
     return nuance_mod4
 
 
+def genesys_preprocessing(sentences: list) -> list:
+    """eliminate words representing hesitations"""
+    reference_mod1 = [re.sub(r"\beuh\b", "", ref) for ref in sentences]
+    reference_mod2 = [re.sub(r"\s+", " ", sentence) for sentence in reference_mod1]
+    return reference_mod2
+
+
 def tokenize_lemmatize(sentenses):
-    """Generate lemmatized tokens using spacy
-
-    Parameters
-    ----------
-    sentenses : list
-        List containing the sentenses to be tokenized and lemmatized.
-
-    Returns
-    -------
-
-    """
+    """Generate lemmatized tokens using spacy"""
     nlp = spacy.load("fr_core_news_md")
     tokenizer = nlp.tokenizer
     tokenized_lemmatized_sentences = [
@@ -127,26 +124,15 @@ def tokenize_lemmatize(sentenses):
     ]
     lemmatized_sentences = [
         " ".join(tokens) for tokens in tokenized_lemmatized_sentences
-    ]  # return the lemmatized_sentences to validation purposes
+    ]
     return tokenized_lemmatized_sentences, lemmatized_sentences
 
 
 def tokenize(sentenses):
-    """Generate tokens using spacy
-
-    Parameters
-    ----------
-    sentenses : list
-        List containing the sentenses to be tokenized and lemmatized
-
-    Returns
-    -------
-
-    """
+    """Generate tokens using spacy"""
     nlp = spacy.load("fr_core_news_md")
     tokenizer = nlp.tokenizer
     tokenized_sentences = [
         [token.text for token in tokenizer(sentence)] for sentence in sentenses
     ]
     return tokenized_sentences
-

@@ -24,7 +24,7 @@ from functools import reduce
 # ---# read data #---#
 reference = read_reference(
     cols=["Transcription corrigée", "Contact ID"],
-    path="../data/references.csv",
+    path="/home/danae/Documents/BNC projects/STTevaluator/data/references.csv",
 )  # read the reference
 nuance_gen       = read_nuance_trans(path="../data/nuance_transcriptions_gen.csv", enc="latin-1")  # read nuance
 nuance_genfast   = read_nuance_trans(path="../data/nuance_transcriptions_genfast.csv")             # read nuance
