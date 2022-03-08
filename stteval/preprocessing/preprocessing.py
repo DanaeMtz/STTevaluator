@@ -121,7 +121,7 @@ def tokenize(sentenses: list) -> list:
 
 
 def clean_genesys_tokens(tokens: list) -> list:
-    """eliminate numbers at the begining of the transcription"""
+    """Eliminate numbers at the begining of the transcription"""
     it_nums = []
     for number in range(25):
         it_nums.append(num2words.num2words(number + 1, lang="fr"))
@@ -146,5 +146,5 @@ def clean_genesys_tokens(tokens: list) -> list:
             trans = trans[1:]
         else:
             trans = trans
-        new_tokens.append(new_tokens)
+        new_tokens.append(trans)
     return new_tokens
