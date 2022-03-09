@@ -16,7 +16,7 @@ def compute_levenshtein_distance(s1: list, s2: list) -> int:
             insertions = (
                 previous_row[j + 1] + 1
             )  # j+1 instead of j since previous_row and current_row are one word longer
-            deletions = current_row[j] + 1  # than s2
+            deletions = current_row[j] + 1
             substitutions = previous_row[j] + (w1 != w2)
             current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
@@ -25,9 +25,7 @@ def compute_levenshtein_distance(s1: list, s2: list) -> int:
 
 def count_wildcards_in_reference(references: list) -> int:
     """Count the number of tokens inside the square brackets [] for each transcription in the 'references' list."""
-    in_square_brackets = (
-        False  # indicates whether or not a given token is inside the "[]""
-    )
+    in_square_brackets = False  # indicates whether a given token is inside the "[]""
     wildcard_counts = []  # list to stock the sum of the words inside the "[]""
     for reference in references:
         wildcard = 0

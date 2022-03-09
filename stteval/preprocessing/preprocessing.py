@@ -19,7 +19,7 @@ def reference_preprocessing(sentences: list) -> list:
     ]
     reference_mod2 = [
         re.sub(
-            # r"[,]?[.]?[\d]+[.,]?[\d]?",
+            #r"[,]?[.]?[\d]+[.,]?[\d]?",
             r"\d+",
             lambda m: num2words.num2words(m.group(0), lang="fr").replace("-", " "),
             sentence,
@@ -100,6 +100,7 @@ def genesys_preprocessing(sentences: list) -> list:
 def tokenize_lemmatize(sentenses: list) -> list:
     """Generate lemmatized tokens using spacy"""
     nlp = spacy.load("fr_core_news_md")
+    #nlp = fr_core_news_md.load()
     tokenizer = nlp.tokenizer
     tokenized_lemmatized_sentences = [
         [token.lemma_ for token in tokenizer(sentence)] for sentence in sentenses

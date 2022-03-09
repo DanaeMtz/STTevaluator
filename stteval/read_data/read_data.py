@@ -36,7 +36,7 @@ def read_amazon_trans(path: str):
     corresponding transcription produced by Amazon Lex."""
     json_files = [
         pos_json for pos_json in os.listdir(path) if pos_json.endswith(".json")
-    ]  # create a list with the files's names
+    ]  # create a list with the file's names
     json_files_t = list(
         filter(re.compile(r"\d{6,19}_\w+").search, json_files)
     )  # read only the files containing the transcriptions
@@ -57,7 +57,6 @@ def read_amazon_trans(path: str):
 def read_nuance_trans(path: str, enc="utf-8"):
     """read transcription produced by Nuance Mix."""
     df = pd.read_csv(path, encoding=enc)
-
     file_id = flat_list([re.findall(r"(\d{6,19}_\w+)", ids) for ids in df.iloc[:, 0]])
     contact_id = flat_list([re.findall(r"(\d{6,19})", ids) for ids in df.iloc[:, 0]])
     df["file_id"] = file_id
@@ -70,7 +69,6 @@ def read_nuance_trans(path: str, enc="utf-8"):
 def read_genesys_trans(path: str, enc="utf-8"):
     """read transcription produced by genesys."""
     df = pd.read_csv(path, encoding=enc)
-
     file_id = flat_list([re.findall(r"(\d{6,19}_\w+)", ids) for ids in df.iloc[:, 0]])
     contact_id = flat_list([re.findall(r"(\d{6,19})", ids) for ids in df.iloc[:, 0]])
     df["file_id"] = file_id
