@@ -18,6 +18,7 @@ Where errors are:
 - Insertion: when a word that wasn't said is added (for example, “hostess” is transcribed as “host is”)
 - Deletion: when a word is omitted from the transcript (for example, “get it done” is transcribed as “get done”)
 
+### Results 
 
 | Engin   | WER |
 |---------|-----|
@@ -25,7 +26,15 @@ Where errors are:
 | Verint  |0.39 |
 | Genesys |0.15 |
 
+#### Examples of common mistakes 
 
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |présentement j'ai subi un vol d'identité.|
+| Nuance     |présentement j'ai subi un vol d'identité |
+| Verint     |présentement je **suis bien** vol d'identité |
+| Genesys    |présentement j'ai **su bien** vol d'identités|
 
 
 # Build Status
