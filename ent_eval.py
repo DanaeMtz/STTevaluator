@@ -18,7 +18,8 @@ from stteval.preprocessing.preprocessing import (
 )
 import pandas as pd
 
-my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
+#my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
+my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
 
 reference = read_reference(
     cols=["Transcription corrigée", "Contact ID"],
@@ -94,3 +95,12 @@ df_numbers.to_excel(my_wd + "output/numbers_nuance_vs_genesys.xlsx", index=False
 
 f1_score_genfast = f1_score(precis_nuance_genfast[5], recall_nuance_genfast[5])
 f1_score_genfast = f1_score(precis_nuance_genesys[5], recall_nuance_genesys[5])
+
+df_examples = df_numbers.loc[df["precision_genfast"] - df["precision_genesys"] > 0.7]
+df_examples.shape
+
+df_examples.loc[:,'precision_genesys']
+df_examples.loc[144,'reference']
+df_examples.loc[144,'number_ref_list']
+df_examples.loc[144,'nuance']
+df_examples.loc[144,'genesys']
