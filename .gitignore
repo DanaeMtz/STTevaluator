@@ -130,5 +130,4 @@ dmypy.json
 .idea/
 .output/
 .Rhistory
-genfast_genesys.py
 my_script.py
