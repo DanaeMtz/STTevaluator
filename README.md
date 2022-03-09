@@ -36,8 +36,40 @@ Where errors are:
 | Verint     |présentement je **suis bien** vol d'identité |
 | Genesys    |présentement j'ai **su bien** vol d'identités|
 
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |je voudrais faire trois arrêts de paiement.|
+| Nuance     |je voudrais faire trois arrêts de paiement |
+| Verint     |moi je regarde c' est même |
+| Genesys    |je voudrais faire trois arrête **ment**|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |Allô oui bonjour, ce serait pour mon CELI, dans le fond je voudrais faire de l'épargne systématique|
+| Nuance     |Allô oui bonjour ça serait pour mon CELI dans le fond je voudrais faire de l'épargne systématique|
+| Verint     |     oui bonjour ce serait **pour mon pays** dans le fond je voudrais faire **les taxes** était matché qu'|
+| Genesys    |allô oui bonjour euh ce serait **prononcé lui** dans le chan je voudrais faire de **lepage** systématique|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |J'appelle pour avoir de l'information sur un taux hypothécaire pour acheter une maison.|
+| Nuance     |J'appelle pour avoir de l'information sur un taux hypothécaire pour acheter une maison|
+| Verint     |j'appelle qu' on va l' information sur un peu quoi c' est ça qui maison |
+| Genesys    |j'appelle **revoir** de l'information sur un **tour hypothèse** pour acheter une maison|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |c'est parce qu'on s'est fait **piraté** notre courriel notre **cellulaire**|
+| Nuance     |    c'parce qu'on s'est fait pirater notre courriel notre cellulaire|
+| Verint     |c'était - sept neuf quatre comment c'est quatre qui est gratuit notre **et elle**|
+| Genesys    |      parce qu'on se fait **puis rater** notre courriel **à celle là**|
+
 
 # Build Status
+
 This basically explains the current build status of the project. If there is a bug /error which needs addressing. This is done so for two different reasons The user understands that this is an issue and does not spend more time figuring if it was a mistake on their part.A developer who is familiar with the issue can suggest some solutions directly without going through the whole code.
 
 # Code Style
