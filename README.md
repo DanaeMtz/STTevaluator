@@ -45,11 +45,20 @@ The entities considered in this exercise are:
 
 ### Results 
 
-| Engin   | WER |
-|---------|-----|
-| Nuance  |0.09 |
-| Verint  |0.39 |
-| Genesys |0.15 |
+| Engin   | WER | WER (with lemmatization) |
+|---------|-----|-----|
+| Nuance  |0.09 |0.08 |
+| Verint  |0.39 |0.39 |
+| Genesys |0.15 |0.16 |
+
+**banking entities**
+
+| Engin   | Recall | Precision | F1-score |
+|---------|--------|-----------|----------|
+| Nuance  |0.92    |1.00       |0.96      |
+| Verint  |0.22    |0.55       |0.32      |
+| Genesys |0.04    |1.00       |0.08      |
+
 
 #### Examples of common mistakes 
 
@@ -96,6 +105,51 @@ The entities considered in this exercise are:
 | Nuance     |    c'parce qu'on s'est fait pirater notre courriel notre cellulaire|
 | Genesys    |      parce qu'on se fait **puis rater** notre courriel **à celle là**|
 | Verint     |c'était - sept neuf quatre comment c'est quatre qui est gratuit notre **et elle**|
+
+
+It is difficult got the genesys and the veritn engines to recognize specific domain banking words, such as CELI and REER. Let's see some examples 
+
+Genesys seems to be very sensitive to the accents. We have observed some lack of consistent in the transcripts, since the same call is usually transcribed differently when we have different speakers. 
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |j'aimerais avoir le solde de mon CELI|
+| Nuance     |j'aimerais avoir le solde de mon CELI|
+| Genesys    |j'aimerais avoir le **sol** de mon **sali**|
+|            |j'aimerais avoir le **sol** de mon **série**|
+| Verint     |j'aimerais avoir le solde de mon **c'est dit**|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |je voudrais échanger mes points pour de l'argent de le mettre dans mon CELI|
+| Nuance     |je voudrais **changer** mes points pour de l'argent de le mettre dans mon CELI|
+| Genesys    |je voudrais **changer** mes points pour de l'argent de le mettre dans mon **élise**|
+| Verint     |je voudrais échanger mes points pour euh l'argent de le mettre dans mon **cellulaire**|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |je voudrais retirer 300 pièces de mon CELI|
+| Nuance     |je voudrais retirer trois cent pièces de mon CELI|
+| Genesys    |je voudrais retirer trois cent pièces de mon **série**|
+| Verint     |je voudrais euh **soixante** piastres de mon **ancien lui**|
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |j'aimerais ça faire une cotisation pour mon REER.|
+| Nuance     |j'aimerais ça faire une cotisation pour mon REER|
+| Genesys    |j'aimerais ça faire une cotisation pour montréal|
+| Verint     | vide |
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |j'ai fait une ouverture de compte épargne comme je suis nouveau à BNC|
+| Nuance     |j'ai fait une ouverture de compte épargne comme je suis nouveau à BNC|
+| Genesys    |j'ai fait une ouverture de compte **pan** comme **ce ce** nouveau **euh a bien ce**|
+| Verint     |j' ai -  |
+
 
 
 # Build Status
