@@ -59,6 +59,20 @@ The entities considered in this exercise are:
 | Verint  |0.22    |0.55       |0.32      |
 | Genesys |0.04    |1.00       |0.08      |
 
+**numeric entities (corpus of numbers)**
+
+| Engin   | Recall | Precision | F1-score |
+|---------|--------|-----------|----------|
+| Nuance  | 0.93   |  0.93     | 0.93     |
+| Genesys | 0.97   |  0.98     | 0.98     |
+
+**numeric entities**
+
+| Engin   | Recall | Precision | F1-score |
+|---------|--------|-----------|----------|
+| Nuance  | 0.92   | 0.90      | 0.91     |
+| Verint  | 0.61   | 0.77      | 0.68     |
+| Genesys | 0.90   | 0.91      | 0.91     |
 
 #### Examples of common mistakes 
 
@@ -107,9 +121,7 @@ The entities considered in this exercise are:
 | Verint     |c'était - sept neuf quatre comment c'est quatre qui est gratuit notre **et elle**|
 
 
-It is difficult got the genesys and the veritn engines to recognize specific domain banking words, such as CELI and REER. Let's see some examples 
-
-Genesys seems to be very sensitive to the accents. We have observed some lack of consistent in the transcripts, since the same call is usually transcribed differently when we have different speakers. 
+It is difficult fot the genesys and the verint engines to recognize specific domain banking words, such as CELI and REER. Let's see some examples. 
 
 
 | Engin      | Transcript |
@@ -150,6 +162,49 @@ Genesys seems to be very sensitive to the accents. We have observed some lack of
 | Genesys    |j'ai fait une ouverture de compte **pan** comme **ce ce** nouveau **euh a bien ce**|
 | Verint     |j' ai -  |
 
+Genesys seems to be very sensitive to the accents. We have observed some lack of consistent in the transcripts, since the same call is usually transcribed differently when we have different speakers. 
+
+**Numbers**
+
+The examples below come from the numbers corpus containing 61 recordings
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |J'aimerais céduler **un** paiement mensuel de **vingt sept** dollar et **cinquante cinq** sous qui sera versé tous les **15** du mois à partir d'octobre.|
+| Nuance     |J'aimerais *c'est Jul* un paiement mensuel de 27,55 $ qui sera versé tous les 15 du mois à partir d'octobre|
+| Genesys    |j'aimerais cédule *mon mensuel* de **vingt sept** dollars et **cinquante cinq** sous qui se traversée tous les **quinze** du mois à partir d'octobre|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |Transfert **mille** dollars et **cent dix** et un autre **deux mille soixante douze** dollars et **douze** sous de mon compte CELI le **20** novembre|
+| Nuance     |Transfert 1000 \$ et 70 autres 2072,12 $ de mon compte CELI le 20 novembre|
+| Genesys    |Transfert **mille** dollars et **cent dix** et un autre **deux mille soixante douze** dollars et **douze** sous de mon compte série le **vingt** novembre|
+
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |J'aimerais céduler un paiement mensuel de **quarante neuf** dollar et **quatrante neuf** sous tous le 11 du mois à partir d'avril 2022.|
+| Nuance     |Ma cellulaire un paiement mensuel de 49,49 $ tout les 11 du mois à partir d'avril 2022|
+| Genesys    |je m'a schédulé un demi mensuel de **quarante neuf** dollars et **quand le** sous tous les onze du mois à partir d'avril deux mille vingt deux|
+
+Remark that Nuance make the parsing if the number is followed by a word indicating amount, such as dollars or sous. The examples followed below represent the come from the original corpus. 
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |appelez le 1 888 835 6281 pour vérifier votre carte avec Apple Pay.|
+| Nuance     |appeler le 1-888-835-6281 pour vérifier votre carte avec ApplePay|
+| Genesys    |appeler le un huit huit huit euh huit trois cinq six deux huit un pour vérifier votre carte avec app|
+| Verint     |appeler le un huit huit huit euh huit trois cinq six deux huit un pour vérifier votre carte avec - p|
+
+| Engin      | Transcript |
+|------------|------------|
+| Reference  |m'ont donné un numéro de téléphone 414 413 5527, et puis c'est pas bon ce numéro là.|
+| Nuance     |m'ont donné un numéro de téléphone 414-413-5527 et puis c'est pas bon ce numéro là|
+| Genesys    |ont donné un numéro de téléphone euh quatre un quatre quatre un trois cinq cinq deux sept et puis c'est pas bon ce|
+| Verint     |plan en donner un numéro de téléphone euh pas puis un quatre quatre un trois cinq cinq deux sept - pour voir ce numéro là|
+
+In conclusion, Genesys is as good as nuance with numbers, except that nuance has parsing integrated. 
 
 
 # Build Status

@@ -5,14 +5,17 @@ import re
 from stteval.utils import flat_list
 
 
-def read_reference(cols: list, path: str):
+def read_reference(cols: list, path: str, enc="latin-1"):
     """Read cvs file containing the reference text."""
     df = pd.read_csv(
-        path, usecols=cols, encoding="latin-1", dtype={"Contact ID": "str"}
+        path, usecols=cols, encoding=enc, dtype={"Contact ID": "str"}
     )
     df.dropna(inplace=True)
     df = df.rename(
-        columns={"Transcription corrigée": "reference", "Contact ID": "contact_id"}
+        columns={
+            "Transcription corrigée": "reference",
+            "Contact ID": "contact_id",
+        }
     )
     return df
 
