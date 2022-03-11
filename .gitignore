@@ -127,3 +127,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.idea/
+.output/
+.Rhistory
+my_script.py
+ent_eval.py
+ent_eval_banking.py
+ent_eval_numbers.py
+genfast_genesys.py
+spacy_test.py
+wer.py
+README.html
+output/
+data/
+
