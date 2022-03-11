@@ -19,8 +19,8 @@ from stteval.preprocessing.preprocessing import (
 )
 import pandas as pd
 
-my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
-#my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
+#my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
+my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
 
 reference_num = read_reference(
     cols=["Transcription corrigée", "Contact ID"],
@@ -55,7 +55,6 @@ genesys_tokens_num = tokenize(genesys_clean_num)
 genesys_tokens_num = clean_genesys_tokens(genesys_tokens_num)
 referen_tokens_num = tokenize(referen_clean_num)
 
-
 # numeric entities
 numb_ents = read_entity(my_wd + "data/number_entities.txt")
 
@@ -80,9 +79,9 @@ df_num.to_excel(my_wd + "output/numbers_only_nuance_vs_genesys.xlsx", index=Fals
 
 df_examples = df_num.loc[df_num["precision_genesys"]-df_num["precision_nuance"] > 0.2]
 df_examples.shape
-
+df_examples.columns
 df_examples.loc[:,'precision_genesys']
-df_examples.loc[30,'reference']
-df_examples.loc[30,'numers_ref_list']
-df_examples.loc[30,'nuance']
-df_examples.loc[30,'genesys']
+df_examples.loc[44,'reference']
+df_examples.loc[44,'numers_ref_list']
+df_examples.loc[44,'nuance']
+df_examples.loc[44,'genesys']

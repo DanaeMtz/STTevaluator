@@ -19,8 +19,8 @@ from stteval.preprocessing.preprocessing import (
 )
 import pandas as pd
 
-#my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
-my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
+my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
+#my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
 
 reference = read_reference(
     cols=["Transcription corrigée", "Contact ID", "Transcription Verint"],
@@ -111,13 +111,14 @@ df_banking = df_banking[
     ]
 ]
 
-#df_banking.to_excel("output/banking_nuance_vs_genesys.xlsx", index=False)
+df_banking.to_excel("output/banking_nuance_vs_genesys_vs_verint.xlsx", index=False)
 df_banking.shape
 
 df_examples = df_banking.loc[df["recall_nuance"] - df["recall_genesys"] > 0.5]
 df_examples.shape
 
-df_examples.loc[553,'reference']
-df_examples.loc[553,'nuance']
-df_examples.loc[553,'genesys']
-df_examples.loc[555,'verint']
+df_examples.loc[:,'banking_ref_list']
+df_examples.loc[334,'reference']
+df_examples.loc[334,'nuance']
+df_examples.loc[334,'genesys']
+df_examples.loc[334,'verint']

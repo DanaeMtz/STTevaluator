@@ -48,8 +48,8 @@ The entities considered in this exercise are:
 | Engin   | WER | WER (with lemmatization) |
 |---------|-----|-----|
 | Nuance  |0.09 |0.08 |
-| Verint  |0.39 |0.39 |
-| Genesys |0.15 |0.16 |
+| Verint  |0.39 |0.37 |
+| Genesys |0.15 |0.13 |
 
 **banking entities**
 
@@ -59,7 +59,7 @@ The entities considered in this exercise are:
 | Verint  |0.22    |0.55       |0.32      |
 | Genesys |0.04    |1.00       |0.08      |
 
-**numeric entities (corpus of numbers)**
+**numeric entities (corpus of numbers 61)**
 
 | Engin   | Recall | Precision | F1-score |
 |---------|--------|-----------|----------|
@@ -207,16 +207,6 @@ Remark that Nuance make the parsing if the number is followed by a word indicati
 In conclusion, Genesys is as good as nuance with numbers, except that nuance has parsing integrated. 
 
 
-# Build Status
-
-This basically explains the current build status of the project. If there is a bug /error which needs addressing. This is done so for two different reasons The user understands that this is an issue and does not spend more time figuring if it was a mistake on their part.A developer who is familiar with the issue can suggest some solutions directly without going through the whole code.
-
-# Code Style
-This lets the users know that you have used a particular code style and helps them when contributing to your project so that the whole project code style stays the same. Some common code styles: standard, xo, etc.
-
-# Screenshots
-As the saying goes, a picture is equal to a thousand words. Most people will be interested if there is a visual representation of what the project is about. It helps them understand better. A visual representation can be snapshots of the project or a video of the functioning of the project.
-
 # Tech/Framework used
 This is used to help the reader understand which tech or frameworks have been used to do the project. It helps the reader understand which all tech stack he has to be familiar with to understand the whole project.
 
@@ -226,22 +216,5 @@ This is where you write what all extra features have been done in your project. 
 # Code Examples
 This is where you try to compress your project and make the reader understand what it does as simply as possible. This should help the reader understand if your code solves their issue.
 
-# Installation
-If your project needs installation of certain software or configurations to the system. Do mention it in this section as it helps a lot for the reader to use your project. The steps mentioned should be precise and explanatory.  If possible, you can add links that can help them better understand how to configure/install the necessary files or softwares.
-
-# API reference
-If your project is small, then we can add the reference docs in the readme. For larger projects, it is better to provide links to where the API reference documentation is documented.
-Tests
-This is the section where you mention all the different tests that can be performed with code examples
-
 # How to Use?
 As I have mentioned before, you never know who is going to read your readme. So it is better to provide information on how to use your project. A step-by-step guide is best suited for this purpose. It is better to explain steps as detailed as possible because it might be a beginner who is reading it.
-
-# Contribute
-This is where you let them know that they can contribute and help you out. A guideline on how to contribute is also helpful
-
-# Credits
-Giving proper credit is most important. Mention any links/repos which helped you or inspired you to build this project. It can be a blog, another open source project, or just people who have contributed in building this project.
-
-# License
-A short description of the license. (MIT, Apache, etc.)
