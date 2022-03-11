@@ -16,7 +16,8 @@ from stteval.preprocessing.preprocessing import (
 )
 import pandas as pd
 
-my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
+my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
+#my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
 
 reference = read_reference(
     cols=["Transcription corrigée", "Contact ID", "Transcription Verint"],
@@ -54,17 +55,17 @@ genesys_clean = genesys_preprocessing(genesys_trans)
 referen_clean = reference_preprocessing(referen_trans)
 
 # tokenization
-# nuance_tokens, nuance_lem_sents = tokenize_lemmatize(nuance_clean)
-# verint_tokens, verint_lem_sents = tokenize_lemmatize(verint_clean)
-# genesys_tokens, genesys_lem_sents = tokenize_lemmatize(genesys_clean)
-# genesys_tokens = clean_genesys_tokens(genesys_tokens)
-# referen_tokens, referen_lem_sents = tokenize_lemmatize(referen_clean)
-
-nuance_tokens = tokenize(nuance_clean)
-verint_tokens = tokenize(verint_clean)
-genesys_tokens = tokenize(genesys_clean)
+nuance_tokens, nuance_lem_sents = tokenize_lemmatize(nuance_clean)
+verint_tokens, verint_lem_sents = tokenize_lemmatize(verint_clean)
+genesys_tokens, genesys_lem_sents = tokenize_lemmatize(genesys_clean)
 genesys_tokens = clean_genesys_tokens(genesys_tokens)
-referen_tokens = tokenize(referen_clean)
+referen_tokens, referen_lem_sents = tokenize_lemmatize(referen_clean)
+
+# nuance_tokens = tokenize(nuance_clean)
+# verint_tokens = tokenize(verint_clean)
+# genesys_tokens = tokenize(genesys_clean)
+# genesys_tokens = clean_genesys_tokens(genesys_tokens)
+# referen_tokens = tokenize(referen_clean)
 
 # nuance_tokens[1]
 # verint_tokens[1]
@@ -95,7 +96,7 @@ df = df[
     ]
 ]
 
-#df.to_excel(my_wd + "output/WER_nuance_verint_genesys.xlsx", index=False)
+df.to_excel(my_wd + "output/WER_nuance_verint_genesys.xlsx", index=False)
 
 df_examples = df.loc[(df["wer_genesys"] - df["wer_nuance"] > 0.2) & (df["wer_verint"] - df["wer_nuance"] > 0.2)]
 
@@ -106,7 +107,7 @@ df_examples.shape
 df_examples.loc[:,'wer_genesys']
 df_examples.loc[:,'wer_verint']
 
-df_examples.loc[74,'reference']
-df_examples.loc[74,'nuance']
-df_examples.loc[74,'verint']
-df_examples.loc[74,'genesys']
+df_examples.loc[363,'reference']
+df_examples.loc[363,'nuance']
+df_examples.loc[363,'genesys']
+df_examples.loc[363,'verint']
