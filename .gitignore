@@ -138,4 +138,6 @@ genfast_genesys.py
 spacy_test.py
 wer.py
 README.html
+output/
+data/
 
