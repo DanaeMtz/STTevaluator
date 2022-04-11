@@ -19,8 +19,8 @@ from stteval.preprocessing.preprocessing import (
 )
 import pandas as pd
 
-my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
-#my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
+#my_wd = "/home/danae/Documents/BNC projects/STTevaluator/"
+my_wd = "C:/Users/mard019/Desktop/Documents/Git/STTevaluator/"
 
 reference = read_reference(
     cols=["Transcription corrigée", "Contact ID", "Transcription Verint"],
@@ -30,9 +30,11 @@ reference = reference.rename(columns={"Transcription Verint": "verint"})
 
 genfast = read_nuance_trans(path=my_wd + "data/genfast.csv")
 genesys = read_genesys_trans(path=my_wd + "data/genesys.csv")
+genesys_topics = read_genesys_trans(path=my_wd + "data/genesys_topics.csv")
 
 # merge transcriptions
 transcriptions = pd.merge(genfast, genesys, on=["file_id", "contact_id"], how="inner")
+transcriptions2 = pd.merge(transcriptions, genesys_topics, on=["contact_id"], how="inner")
 
 df = pd.merge(transcriptions, reference, on=["contact_id"], how="inner")
 df.dropna(inplace=True)
@@ -62,8 +64,8 @@ referen_tokens = tokenize(referen_clean)
 numb_ents = read_entity(my_wd + "data/number_entities.txt")
 
 recall_nuance = pseudo_recall(referen_tokens, nuance_tokens, numb_ents)
-recall_verint = pseudo_recall(referen_tokens, verint_tokens, numb_ents)
 recall_genesys = pseudo_recall(referen_tokens, genesys_tokens, numb_ents)
+recall_verint = pseudo_recall(referen_tokens, verint_tokens, numb_ents)
 
 df["recall_nuance"] = recall_nuance[4]
 df["recall_verint"] = recall_verint[4]
@@ -72,8 +74,8 @@ df["recall_genesys"] = recall_genesys[4]
 df["numers_ref_list"] = recall_nuance[3]
 
 precis_nuance = pseudo_precision(referen_tokens, nuance_tokens, numb_ents)
-precis_verint = pseudo_precision(referen_tokens, verint_tokens, numb_ents)
 precis_genesys = pseudo_precision(referen_tokens, genesys_tokens, numb_ents)
+precis_verint = pseudo_precision(referen_tokens, verint_tokens, numb_ents)
 
 df["precision_nuance"] = precis_nuance[4]
 df["precision_verint"] = precis_verint[4]
@@ -108,7 +110,7 @@ df_numbers = df_numbers[
     ]
 ]
 
-#df_numbers.to_excel(my_wd + "output/numbers_nuance_vs_genesys.xlsx", index=False)
+df_numbers.to_excel(my_wd + "output/numbers_nuance_vs_genesys.xlsx", index=False)
 
 df_examples = df_numbers.loc[df["precision_nuance"] - df["precision_genesys"] > 0.2]
 df_examples.shape

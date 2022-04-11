@@ -49,6 +49,10 @@ nuance_clean_num = nuance_preprocessing(nuance_trans_num)
 genesys_clean_num = genesys_preprocessing(genesys_trans_num)
 referen_clean_num = reference_preprocessing(referen_trans_num)
 
+nuance_clean_num[10]
+genesys_clean_num[10]
+referen_clean_num[10]
+
 # tokenization
 nuance_tokens_num = tokenize(nuance_clean_num)
 genesys_tokens_num = tokenize(genesys_clean_num)
